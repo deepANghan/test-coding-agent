@@ -2,8 +2,7 @@ import type { ChatFunctionTool, ChatMessages } from "@openrouter/sdk/models";
 import { llmClient } from "../config/model.js";
 import type { State } from "../types/types.js";
 import { executeTool, getOpenAITools } from "../tools/toolRegistery.js";
-
-const llmModel = "openai/gpt-oss-20b:free";
+import { LLM_MODEL } from "../config/constants.js";
 
 async function callLLM(state: State) {
 
@@ -12,7 +11,7 @@ async function callLLM(state: State) {
 
         const res = await llmClient.chat.send({
             chatRequest: {
-                model: llmModel,
+                model: LLM_MODEL,
                 messages: state.messages as ChatMessages[],
                 toolChoice: "auto",
                 tools: tools as ChatFunctionTool[]
