@@ -50,6 +50,7 @@ const toolRegistery = [
 ];
 
 function getOpenAITools() {
+
     return toolRegistery.map(tool => ({
         type: "function",
         function: {
@@ -58,9 +59,11 @@ function getOpenAITools() {
             parameters: tool.parameters
         }
     }));
+
 }
 
 export async function executeTool(name: string, args: any) {
+
     const tool = toolRegistery.find(
         t => t.name === name
     );
